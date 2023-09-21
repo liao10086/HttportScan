@@ -3,7 +3,6 @@ chardet==5.0.0
 mmh3==4.0.0
 pluginbase==1.0.1
 prettytable==3.2.0
-python_Wappalyzer==0.3.1
 Requests==2.31.0
 urllib3==1.26.9
-python-Wappalyzer==0.4.0
+python-Wappalyzer==0.3.1

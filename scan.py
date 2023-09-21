@@ -35,7 +35,7 @@ class PortScan(object):
         self.dict_url = []
         self.dir_result = []
         #self.table = PrettyTable(['URL','标题','状态码','WEB指纹','WAF','登录后台'])
-        #非HTPP端口排除
+        #非HTPP端口排除，罗列不全可以自行添加
         self.not_http_ports = {
                                 21: "FTP",
                                 22: "SSH",
@@ -182,8 +182,10 @@ class PortScan(object):
                         if int(port) in self.not_http_ports.keys():
                             print("\033[32m端口:{} 服务:{}\033[0m".format(port, self.not_http_ports[int(port)]))
                             continue
-                        self.url_list.append("http://{}:{}".format(ip, port))
-                        self.url_list.append("https://{}:{}".format(ip, port))
+                        if port != "443":
+                            self.url_list.append("http://{}:{}".format(ip, port))
+                        if port != "80":
+                            self.url_list.append("https://{}:{}".format(ip, port))
                 print(f"{target} URL探测任务读取完毕，识别到 {len(self.url_list)} 条任务信息")
         except subprocess.CalledProcessError:
             self.url_list = -1
